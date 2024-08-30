@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Courses{% endblock %}
+
+{% block content %}
+{% for course in courses %}
+<div class="row my-4">
+    <div class="col-3">
+        <img class="img-fluid rounded" src="{{ course.image.url }}" alt="Course image">
+    </div>
+    <div class="col-9 text-white">
+        <p>{{ course.title }}</p>
+        {% if user.is_authenticated %}
+        <a href="{% url 'course' course.slug %}" class="border rounded text-decoration-none text-white px-3 py-2">Batafsil</a>
+        {% else %}
+        <p>Kursda qatnashish uchun akkauntingizga kiring</p>
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ course.title }}{% endblock %}
+
+{% block content %}
+<img src="{{ course.image.url }}" class="rounded" alt="Course">
+<p class="text-white fs-1">{{ course.title }}</p>
+<div class="row border rounded py-3 px-2 my-4">
+    <p class="text-white fs-4">Lessons</p>
+{% for lesson in course.lessons.all %}
+    <a class="text-decoration-none text-white" href="{% url 'lesson' course.slug lesson.slug %}">{{ lesson.title }}</a>
+{% endfor %}
+</div>
+{% endblock %}

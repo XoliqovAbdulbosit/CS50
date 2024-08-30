@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Profil{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-6">
+        <form class="" method="post" action="{% url 'profile' %}">
+            {% if error %}
+                <p class="text-danger">{{ error }}</p>
+            {% endif %}
+            {% csrf_token %}
+            <label for="email" class="text-white mt-3">Email:</label>
+            <input class="form-control bg-dark text-white" type="text" id="email" name="email" value="example@gmail.com">
+            <label for="gender" class="text-white mt-3">Jins:</label>
+            <select class="form-control bg-dark text-white" name="gender" id="gender">
+                <option value="Ayol">Ayol</option>
+                <option value="Erkak" selected>Erkak</option>
+            </select>
+            <label for="age" class="text-white mt-3">Yosh:</label>
+            <input class="form-control bg-dark text-white" type="number" id="age" name="age" value="18">
+            <label for="phonenumber" class="text-white mt-3">Telfon Raqam:</label>
+            <input class="form-control bg-dark text-white" type="text" id="phonenumber" name="phonenumber" value="+998901234567">
+            <button class="btn btn-primary mt-3" type="submit">Saqlash</button>
+        </form>
+    </div>
+    <div class="col-6">
+
+    </div>
+</div>
+{% endblock %}
