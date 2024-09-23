@@ -69,21 +69,30 @@ def completed(request, course_slug, lesson_slug):
     user = request.user
     progress = Progress.objects.get_or_create(profile=Profile.objects.get(user=user), course=course, lesson=lesson)
     if progress[1]:
-        progress.save()
+        progress[0].save()
     return redirect(reverse('course', kwargs={'course_slug': course_slug}))
 
 
 def profile(request):
     if request.method == 'POST':
         email = request.POST['email']
+        gender = request.POST['gender']
+        age = request.POST['age']
         phonenumber = request.POST['phonenumber']
-        print(email, phonenumber)
-    return render(request, 'profile.html')
+        profile = Profile.objects.get(user=request.user)
+        profile.email = email
+        profile.gender = gender
+        profile.age = age
+        profile.phonenumber = phonenumber
+        profile.save()
+        return redirect('profile')
+    profile = Profile.objects.get(user=request.user)
+    lst = [profile.email, profile.gender, profile.age, profile.phonenumber]
+    return render(request, 'profile.html', {'lst': lst})
 
 
 def course(request, course_slug):
     course = Course.objects.get(slug=course_slug)
     progress = Progress.objects.filter(profile=Profile.objects.get(user=request.user), course=course).count()
-    percentage = int(progress / course.lessons.count() * 100)
-    print(percentage)
-    return render(request, 'course.html', {'course': course})
+    percentage = round(progress / course.lessons.count() * 100)
+    return render(request, 'course.html', {'course': course, 'percentage': percentage})

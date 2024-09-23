@@ -3,8 +3,11 @@
 {% block title %}{{ course.title }}{% endblock %}
 
 {% block content %}
-<img src="{{ course.image.url }}" class="rounded" alt="Course">
+<img src="{{ course.image.url }}" class="img-fluid rounded" alt="Course">
 <p class="text-white fs-1">{{ course.title }}</p>
+<div class="progress bg-dark" role="progressbar" aria-label="Basic example" aria-valuenow="{{ percentage }}" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar" style="width: {{ percentage }}%">{{ percentage }}%</div>
+</div>
 <div class="row border rounded py-3 px-2 my-4">
     <p class="text-white fs-4">Lessons</p>
 {% for lesson in course.lessons.all %}
