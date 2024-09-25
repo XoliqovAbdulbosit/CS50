@@ -4,7 +4,7 @@
 
 {% block content %}
 <main class="d-flex justify-content-center align-items-center">
-    <form class="px-4 w-50" method="post" action="{% url 'login' %}">
+    <form class="px-4 w-75" method="post" action="{% url 'login' %}">
         {% if error %}
             <p class="text-danger">{{ error }}</p>
         {% endif %}

@@ -6,7 +6,9 @@
 <img src="{{ lesson.image.url }}" class="img-fluid rounded" alt="Lesson">
 <p class="text-white fs-1">{{ lesson.title }}</p>
 <p class="text-white fs-3">{{ lesson.content }}</p>
-<iframe src="https://www.youtube.com/embed/{{ lesson.video }}" title="{{ lesson.title }}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen width="730" height="410" frameborder="0"></iframe>
+<div class="ratio ratio-16x9">
+    <iframe src="https://www.youtube.com/embed/{{ lesson.video }}" title="{{ lesson.title }}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen frameborder="0"></iframe>
+</div>
 <a href="{% url 'note' course.slug lesson.slug %}" class="text-decoration-none d-block text-white mt-3">Note</a>
 <a href="{% url 'completed' course.slug lesson.slug %}" class="text-decoreation-none text-white btn border rounded my-3">Tugatdim</a>
 {% endblock %}

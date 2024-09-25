@@ -8,7 +8,7 @@
 <div class="progress bg-dark" role="progressbar" aria-label="Basic example" aria-valuenow="{{ percentage }}" aria-valuemin="0" aria-valuemax="100">
     <div class="progress-bar" style="width: {{ percentage }}%">{{ percentage }}%</div>
 </div>
-<div class="row border rounded py-3 px-2 my-4">
+<div class="row border rounded py-3 px-2 my-4 mx-1">
     <p class="text-white fs-4">Lessons</p>
 {% for lesson in course.lessons.all %}
     <a class="text-decoration-none text-white" href="{% url 'lesson' course.slug lesson.slug %}">{{ lesson.title }}</a>
