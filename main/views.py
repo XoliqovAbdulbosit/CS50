@@ -87,8 +87,13 @@ def profile(request):
         profile.save()
         return redirect('profile')
     profile = Profile.objects.get(user=request.user)
+    dct = {}
+    for course in Course.objects.all():
+        progress = Progress.objects.filter(profile=Profile.objects.get(user=request.user), course=course).count()
+        percentage = round(progress / course.lessons.count() * 100)
+        dct[course.title] = percentage
     lst = [profile.email, profile.gender, profile.age, profile.phonenumber]
-    return render(request, 'profile.html', {'lst': lst})
+    return render(request, 'profile.html', {'lst': lst, 'dct': dct})
 
 
 def course(request, course_slug):
